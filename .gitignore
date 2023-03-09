@@ -478,3 +478,5 @@ $RECYCLE.BIN/
 API/appsettings.json
 API/WeatherForecast.cs
 API/datingappv7.db
+API/datingappv7.db-shm
+API/datingappv7.db-wal
