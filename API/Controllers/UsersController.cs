@@ -7,9 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")] // api/users
-    public class UsersController : ControllerBase
+    
+    public class UsersController : BaseApiController
     {
         // in order to inject something we need a constructor. Below we essentially injecting our database using DataContext
 
