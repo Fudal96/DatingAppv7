@@ -2,12 +2,13 @@
 
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    
+    [Authorize]
     public class UsersController : BaseApiController
     {
         // in order to inject something we need a constructor. Below we essentially injecting our database using DataContext
