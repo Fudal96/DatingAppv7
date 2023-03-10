@@ -28,4 +28,8 @@ constructor(private accountService: AccountService) {}
     })
   }
 
+  logout() {
+    this.loggedIn = false;
+  }
+
 }
