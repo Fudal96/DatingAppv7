@@ -20,7 +20,7 @@ namespace API.Controllers
         }
 
         // Api Endpoint so that we can request a list of users
-        [AllowAnonymous]
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
