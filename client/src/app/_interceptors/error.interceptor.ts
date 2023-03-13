@@ -28,7 +28,8 @@ export class ErrorInterceptor implements HttpInterceptor {
                     modelStateErrors.push(error.error.errors[key])
                   }
                 }
-                throw modelStateErrors;
+                // .flat makes a single array instead of two seperate
+                throw modelStateErrors.flat();
               } else {
                 this.toastr.error(error.error, error.status.toString())
               }
