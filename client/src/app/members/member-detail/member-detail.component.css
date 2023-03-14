@@ -20,3 +20,32 @@
     padding: 4px 4px;
   }
 }
+@media only screen and (max-width: 404px) {
+  .member-tabs {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 372px) {
+  .member-tabs {
+    font-size: 12px;
+  }
+}
+@media only screen and (max-width: 342px) {
+  .member-tabs {
+    font-size: 11px;
+  }
+}
+@media only screen and (max-width: 326px) {
+  .member-tabs {
+    font-size: 10px;
+  }
+}
+
+
+.tab-wrap {
+  margin-top: 15px;
+}
+
+.space {
+  margin-top: 20px;
+}

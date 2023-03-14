@@ -26,7 +26,38 @@
           <button class="btn btn-success">Messages</button>
         </div>
       </div>
+     </div>
+   </div>
 
-    </div>
+
+  <div class="col-md-8 col-sm-7">
+    <div class="tab-wrap">
+    <tabset class="member-tabs">
+      <tab heading="About {{member.knownAs}}">
+        <div class="space">
+        <h4>Description</h4>
+        <p>{{member.introduction}}</p>
+        <h4>Looking for</h4>
+        <p>{{member.lookingFor}}</p>
+      </div>
+      </tab>
+      <tab heading="Interests">
+        <div class="space">
+        <h4>Interests</h4>
+        <p>{{member.interests}}</p>
+        </div>
+      </tab>
+      <tab heading="Photos">
+        <div class="space">
+        <p>Photos go here</p>
+      </div>
+      </tab>
+      <tab heading="Messages">
+        <div class="space">
+        <p>Messages go here</p>
+        </div>
+      </tab>
+    </tabset>
+  </div>
   </div>
 </div>
