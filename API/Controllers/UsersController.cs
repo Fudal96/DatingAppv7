@@ -2,6 +2,7 @@
 
 using API.Data;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,28 +12,30 @@ namespace API.Controllers
     [Authorize]
     public class UsersController : BaseApiController
     {
-        // in order to inject something we need a constructor. Below we essentially injecting our database using DataContext
+        // Now we are changing it and instead of injecting DataContext we inject IUserRopository (it is kind of an abstration of an abstraction but that way it is easier to test our code)
 
-        private readonly DataContext _context;
-        public UsersController(DataContext context)
+        private readonly IUserRepository _userRepository;
+        
+        public UsersController(IUserRepository userRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
+            
         }
+        
 
         // Api Endpoint so that we can request a list of users
         
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
-            var users = await _context.Users.ToListAsync();
+            return Ok(await _userRepository.GetUsersAsync());
 
-            return users;
         }
         
-        [HttpGet("{id}")]
-        public async Task <ActionResult<AppUser>> GetUser(int id)
+        [HttpGet("{username}")]
+        public async Task <ActionResult<AppUser>> GetUser(string username)
         {
-            return await _context.Users.FindAsync(id);
+            return await _userRepository.GetUserByUsernnameAsync(username);
 
         }
     }
