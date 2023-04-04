@@ -1,3 +1,5 @@
+<div class="desktop">
+
 <nav class="navbar navbar-expand navbar-dark fixed-top bg-primary">
   <div class="container">
     <a class="navbar-brand" routerLink="/">Dating App</a>
@@ -47,3 +49,57 @@
       </form>
     </div>
 </nav>
+
+</div>
+
+
+
+
+<!--------BELOW 768PX NAVBAR------------------->
+
+
+<div class="mobile">
+
+
+
+
+ <nav class="bg-primary nav-mob">
+  <div class="container-mobile">
+
+    <div class="right">
+      <button type="button" class="btn btn-primary btn-nav-mob" (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+      <i class="fa fa-bars"></i>
+    </button>
+    <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
+    <div (click)="isCollapsed = !isCollapsed" class="well well-lg card card-block card-header" routerLink="/members">Matches</div>
+    <div (click)="isCollapsed = !isCollapsed" class="well well-lg card card-block card-header" routerLink="/lists">Likes</div>
+    <div (click)="isCollapsed = !isCollapsed" class="well well-lg card card-block card-header" routerLink="/messages">Messages</div>
+    </div>
+  </div>
+    <div class="left"><a class="navbar-brand" routerLink="/">Dating App</a></div>
+
+
+
+</div>
+
+  </nav>
+
+
+
+
+
+
+
+
+  <!--<div>
+    <div class="checkbox">
+       <label><input type="checkbox" [(ngModel)]="isCollapsed">Collapse</label>
+    </div>
+ </div>
+ <div [collapse]="isCollapsed" [isAnimated]="true">
+    <div class="well well-lg card card-block card-header">Welcome to Tutorialspoint.</div>
+ </div> -->
+
+
+</div>

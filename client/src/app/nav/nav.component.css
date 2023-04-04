@@ -1,3 +1,57 @@
 .dropdown-toggle, .dropdown-item {
   cursor: pointer;
 }
+
+.container-mobile {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-mob {
+  height: 80px;
+}
+
+.btn-nav-mob {
+  height: 60px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+button i {
+  transform: scale(2.2);
+}
+
+#collapseBasic {
+  z-index: 1000 !important;
+  position: relative;
+}
+
+.card-header {
+  background-color: purple;
+  font-size: 22px;
+  margin-left: 3px;
+}
+
+.left a {
+  font-size: 28px;
+  font-weight: 700;
+  margin-right: 20px;
+}
+
+.left {
+  margin-top: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+  .desktop {
+    display: none;
+  }
+}
+
+
+
+@media only screen and (min-width: 769px) {
+  .mobile {
+    display: none;
+  }
+}

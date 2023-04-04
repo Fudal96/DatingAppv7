@@ -11,6 +11,7 @@ import { AccountService } from '../_services/account.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit{
+isCollapsed: boolean = true;
 model: any = {};
 
 
