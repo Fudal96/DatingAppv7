@@ -46,6 +46,7 @@ namespace API.Controllers
             return await _userRepository.GetMemberAsync(username);  
         }
 
+// HttpPut should return 204 No Content
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto) {
            
@@ -60,6 +61,7 @@ namespace API.Controllers
             return BadRequest("Failed to update the user");
         }
 
+// HttpPost should return 201 Created
     [HttpPost("add-photo")]
     public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
     {
@@ -81,7 +83,10 @@ namespace API.Controllers
 
         user.Photos.Add(photo);
 
-        if (await _userRepository.SaveAllAsync()) return _mapper.Map<PhotoDto>(photo);
+        if (await _userRepository.SaveAllAsync()) 
+        {
+            return CreatedAtAction(nameof(GetUser), new {username = user.UserName}, _mapper.Map<PhotoDto>(photo));
+        }
 
         return BadRequest("Problem adding photo");
     }
