@@ -5,6 +5,7 @@ import { Toast, ToastrModule } from 'ngx-toastr';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 
 
@@ -19,14 +20,18 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     }),
     TabsModule,
     NgxGalleryModule,
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    NgxSpinnerModule.forRoot({
+      type: 'line-scale-party'
+    })
   ],
   exports: [
     BsDropdownModule,
     ToastrModule,
     TabsModule,
     NgxGalleryModule,
-    CollapseModule
+    CollapseModule,
+    NgxSpinnerModule
   ]
 })
 export class SharedModule { }
