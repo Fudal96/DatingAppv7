@@ -69,7 +69,7 @@ namespace API.Controllers
 
         var result = await _photoService.AddPhotoAsync(file);
 
-        if (result != null) return BadRequest(result.Error.Message);
+        if (result.Error != null) return BadRequest(result.Error.Message);
 
         var photo = new Photo
         {
