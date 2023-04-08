@@ -2,6 +2,12 @@
   cursor: pointer;
 }
 
+.dropdown img {
+  max-height: 50px;
+  border: 2px solid white;
+  display: inline;
+}
+
 .container-mobile {
   display: flex;
   justify-content: space-between;

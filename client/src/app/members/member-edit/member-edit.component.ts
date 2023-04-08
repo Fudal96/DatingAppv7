@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output, ViewChild } from '@angular/core';
 import { Member } from 'src/app/_models/member';
 import { User } from 'src/app/_models/user';
 import { MembersService } from 'src/app/_services/members.service';
@@ -19,6 +19,7 @@ export class MemberEditComponent implements OnInit{
       $event.returnValue = true;
     }
   }
+  
   member: Member | undefined;
   user: User | null = null;
 
