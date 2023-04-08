@@ -66,7 +66,7 @@
  <nav class="bg-primary nav-mob">
   <div class="container-mobile">
 
-    <div class="right">
+    <div class="left" *ngIf="(accountService.currentUser$ | async) as user">
       <button type="button" class="btn btn-primary btn-nav-mob" (click)="isCollapsed = !isCollapsed"
       [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
       <i class="fa fa-bars"></i>
@@ -75,15 +75,35 @@
     <div (click)="isCollapsed = !isCollapsed" class="well well-lg card card-block card-header" routerLink="/members">Matches</div>
     <div (click)="isCollapsed = !isCollapsed" class="well well-lg card card-block card-header" routerLink="/lists">Likes</div>
     <div (click)="isCollapsed = !isCollapsed" class="well well-lg card card-block card-header" routerLink="/messages">Messages</div>
+    <div (click)="isCollapsed = !isCollapsed" class="well well-lg card card-block card-header" routerLink="/member/edit">Edit Profile</div>
+    <div (click)="logout()" class="well well-lg card card-block card-header">Logout</div>
     </div>
   </div>
-    <div class="left"><a class="navbar-brand" routerLink="/">Dating App</a></div>
 
+    <div class="right" *ngIf="(accountService.currentUser$ | async) as user"><a class="navbar-brand" routerLink="/">Dating App</a></div>
 
+<div class="user-photo" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <img src="/assets/user.png">
+      </div>
+
+<div class="login-mobile">
+      <form *ngIf="!(accountService.currentUser$ | async)" #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
+        <input
+        name="username"
+        [(ngModel)]="model.username"
+        class="form-control me-2"
+        type="text"
+        placeholder="Username">
+        <input
+        name="password"
+        [(ngModel)]="model.password"
+        class="form-control me-2"
+        type="password"
+        placeholder="Password">
+        <button class="btn btn-success" type="submit">Login</button>
+      </form>
+    </div>
 
 </div>
-
   </nav>
-
-
 </div>

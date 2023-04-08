@@ -13,7 +13,7 @@
 
 .btn-nav-mob {
   height: 60px;
-  margin-top: 5px;
+  margin-top: 10px;
   margin-left: 10px;
 }
 
@@ -27,19 +27,39 @@ button i {
 }
 
 .card-header {
-  background-color: purple;
-  font-size: 22px;
+  background-color: #E83283;
+  font-size: 18px;
   margin-left: 3px;
 }
 
-.left a {
-  font-size: 28px;
+.right a {
+  font-size: 26px;
   font-weight: 700;
-  margin-right: 20px;
+  margin-right: 5px;
 }
 
-.left {
-  margin-top: 15px;
+.right {
+
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.login-mobile {
+
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
+.user-photo {
+  margin-top: 16px;
+  margin-left: 16px;
+}
+
+.user-photo img {
+  height: 48px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -53,5 +73,37 @@ button i {
 @media only screen and (min-width: 769px) {
   .mobile {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 525px) {
+  .login-mobile {
+    margin: 2% !important;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .card-header {
+    padding: 12px 26px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .right a {
+    font-size: 24px;
+  }
+  .card-header {
+    font-size: 16px;
+    padding: 10px 24px;
+  }
+}
+
+@media only screen and (max-width: 345px) {
+  .right a {
+    font-size: 22px;
+  }
+  .card-header {
+    font-size: 15px;
+    padding: 8px 20px;
   }
 }

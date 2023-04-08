@@ -32,7 +32,8 @@ constructor(public accountService: AccountService, private router: Router, priva
 
   logout() {
     this.accountService.logout();
-    this.router.navigateByUrl('/')
+    this.router.navigateByUrl('/');
+    this.isCollapsed = !this.isCollapsed;
   }
 
 }
