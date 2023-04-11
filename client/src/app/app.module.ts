@@ -47,6 +47,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    // importing ReactiveFormsModule
     ReactiveFormsModule,
     SharedModule
   ],
