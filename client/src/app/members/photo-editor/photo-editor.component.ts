@@ -3,8 +3,10 @@ import { environment } from 'environments/environment';
 import { FileUploader } from 'ng2-file-upload';
 import { take } from 'rxjs';
 import { Member } from 'src/app/_models/member';
+import { Photo } from 'src/app/_models/photo';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
+import { MembersService } from 'src/app/_services/members.service';
 
 @Component({
   selector: 'app-photo-editor',
@@ -18,7 +20,7 @@ hasBaseDropZoneOver = false;
 baseUrl = environment.apiUrl;
 user: User | undefined;
 
-constructor(private accountService: AccountService) {
+constructor(private accountService: AccountService, private membersService: MembersService) {
   this.accountService.currentUser$.pipe(take(1)).subscribe({
     next: user => {
       if (user) {
@@ -35,6 +37,22 @@ ngOnInit(): void {
 
 fileOverBase(e: any) {
   this.hasBaseDropZoneOver = e;
+}
+
+setMainPhoto(photo: Photo) {
+  this.membersService.setMainPhoto(photo.id).subscribe({
+    next: () => {
+      if (this.user && this.member) {
+        this.user.photoUrl = photo.url;
+        this.accountService.setCurrentUser(this.user);
+        this.member.photoUrl = photo.url;
+        this.member.photos.forEach(p => {
+          if (p.isMain) p.isMain = false;
+          if (p.id === photo.id) p.isMain = true;
+        })
+      }
+    }
+  })
 }
 
 initializeUploader() {
