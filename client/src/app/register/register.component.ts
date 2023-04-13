@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../_services/account.service';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,11 +11,11 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Vali
 })
 export class RegisterComponent implements OnInit{
   @Output() cancelRegister = new EventEmitter();
-  model: any = {}
   registerForm: FormGroup = new FormGroup({});
   maxDate: Date = new Date();
+  validationErrors: string[] | undefined;
 
-  constructor(private accountService: AccountService, private toastr: ToastrService, private fb: FormBuilder) {}
+  constructor(private accountService: AccountService, private toastr: ToastrService, private fb: FormBuilder, private router: Router) {}
 
 
 
@@ -31,7 +32,7 @@ export class RegisterComponent implements OnInit{
       dateOfBirth: ['', Validators.required],
       city: ['', Validators.required],
       country: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(24)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
     });
     this.registerForm.controls['password'].valueChanges.subscribe({
@@ -46,19 +47,28 @@ export class RegisterComponent implements OnInit{
   }
 
   register() {
-    console.log(this.registerForm?.value);
-   // this.accountService.register(this.model).subscribe({
-     // next: () => {
-      //  this.cancel();
-     // },
-     // error: error => {
-      //  this.toastr.error(error.error)
-      //  console.log(error)
-     // }
-   // })
+    const dob = this.getDateOnly(this.registerForm.controls['dateOfBirth'].value);
+    const values = {...this.registerForm.value, dateOfBirth: dob};
+    console.log(values)
+    this.accountService.register(values).subscribe({
+      next: () => {
+        this.router.navigateByUrl('/members')
+      },
+      error: error => {
+       this.validationErrors = error
+      }
+    })
   }
 
   cancel() {
    this.cancelRegister.emit(false);
+  }
+
+  // at this point we get the date with the timezone and the method below gets rid of the timezone
+
+  private getDateOnly(dob: string | undefined) {
+    if (!dob) return;
+    let theDob = new Date(dob);
+    return new Date(theDob.setMinutes(theDob.getMinutes()-theDob.getTimezoneOffset())).toISOString().slice(0,10);
   }
 }
